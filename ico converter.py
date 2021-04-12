@@ -11,7 +11,7 @@ def ico_convert(filename):
 file_list=[]
 ico='.ico'
 png='.png'
-this_file='png to ico.py'
+this_file='ico converter.py'
 
 for root, dirs, files in os.walk("."):
     for filename in files:
