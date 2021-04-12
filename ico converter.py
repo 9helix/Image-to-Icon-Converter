@@ -22,11 +22,12 @@ br=0
 convert=[]
 
 for i in file_list:
-    i=i[:len(i)-4]
-    if  (i+ico) not in file_list:
-        ico_convert(i+ico)
+    file=file_list[i]
+    file=file[:len(file)-4]
+    if (file+ico) not in file_list:
+        ico_convert(file+ico)
         br+=1
-        convert.append(i+png)
+        convert.append(file+png)
 
 if br==0:
     print('no files have been converted')
