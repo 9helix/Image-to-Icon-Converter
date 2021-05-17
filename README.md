@@ -1,6 +1,9 @@
 # How to use the program
 
+Required for program to work properly:
+
 PIL (Pillow) Python module is required for program to work,
+
 Python 3.6 or newer
 
 For the program to convert your image to the icon (.ico) file, just drop the file into the program's folder and run the Python file.
