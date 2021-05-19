@@ -1,38 +1,46 @@
 import os
+from PIL import Image
 
 def ico_convert(filename):
-    from PIL import Image
-    img=Image.open(filename)
+    img=Image.open(png_path+filename)
     filename=filename.replace(filename[len(filename)-4:],'.ico')
-    img.save(f'{filename}', format='ico')
+    img.save(ico_path+filename, format='ico')
 
-
-file_list=[]
+png_list=[]
+ico_list=[]
 ico='.ico'
-this_file='ico converter.py'
+this_file='png to ico.py'
+dir_path = os.path.dirname(os.path.realpath(__file__))
+png_path = dir_path+'\PNG/'
+ico_path=dir_path+"\ICO/"
 
-for root, dirs, files in os.walk("."):
-    for filename in files:
-        if filename!=this_file:
-            file_list.append(filename)
-            
+for entry in os.listdir(png_path):
+    if os.path.isfile(os.path.join(png_path, entry)):
+        entry=entry[:len(entry)-4]
+        png_list.append(entry)
+
+for entry in os.listdir(ico_path):
+    if os.path.isfile(os.path.join(ico_path, entry)):
+        entry=entry[:len(entry)-4]
+        ico_list.append(entry)           
+
 br=0
-convert=[]
 
-for i in file_list:
-    file=i
-    i=i[:len(i)-4]
-    if (i+ico) not in file_list:
-        ico_convert(file)
+for file in png_list:
+    if file in ico_list:
+        png_list.remove(file)
+    if file not in ico_list:
+        ico_convert(file+'.png')
         br+=1
-        convert.append(file)
 
 if br==0:
-    print('no files have been converted')
+    print('No files have been converted.')
 
 else:
-    print('the following files have been converted:')
-    for i in range (len(convert)):
-        print(f'{convert[i]}')
-        
+    print('{len(convertt)} files have been converted:')
+    for i in range (len(png_list)):
+        print(png_list[i]+'.png')
+
+
+
         
