@@ -6,6 +6,7 @@ def ico_convert(filename):
     img=Image.open(png_path+filename)
     filename=filename.replace(filename[len(filename)-4:],'.ico')
     img.save(ico_path+filename, format='ico')
+    
 
 png_list=[]
 ico_list=[]
@@ -37,6 +38,7 @@ for file in png_list:
         ico_convert(rf'{filename}')
         br+=1
         converted.append(file)
+        os.remove(png_path+filename)
 
 f=open('log.txt','w')
 if br==0:
@@ -44,11 +46,11 @@ if br==0:
     f.write('No files have been converted.')
 
 else:    
-    print(f'{len(converted)} files have been converted:')
-    f.write(f'{len(converted)} files have been converted:')
+    print(f'{len(converted)} files have been converted: \n')
+    f.write(f'{len(converted)} files have been converted: \n')
     for i in range (len(converted)):
         print(converted[i]+'.png')
-        f.write(converted[i]+'.png')
+        f.write(converted[i]+'.png'+'\n')
 f.close()
 webbrowser.open('log.txt')
 
